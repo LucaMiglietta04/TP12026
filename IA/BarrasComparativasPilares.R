@@ -1,10 +1,12 @@
 # Instalo los paquetes necesarios (si aún no los tengo instalados)
 # install.packages("tidyverse")
 # install.packages("ggplot2")
+#install.packages("patchwork")
 
 # Cargo los paquetes que voy a usar
 library(tidyverse)
 library(ggplot2)
+library(patchwork)
 
 # Fijo el dataset
 attach(datos_limpios)
@@ -14,13 +16,13 @@ library(tidyverse)
 library(ggplot2)
 
 # 1. Gráfico de proporciones de la Dimensión Mejor Puntuada
-datos_limpios %>%
-  # Calculamos porcentajes por categoría
+g1 <- datos_limpios %>%
+
   count(Dimension_mejor_puntuada) %>%
   mutate(porcentaje = n / sum(n)) %>%
   
   ggplot() + 
-  # Usamos reorder para que la barra más alta quede primero
+
   aes(x = reorder(Dimension_mejor_puntuada, -porcentaje), y = porcentaje, fill = Dimension_mejor_puntuada) +
   
   geom_bar(stat = "identity", width = 0.7, col = "black") +
@@ -29,7 +31,6 @@ datos_limpios %>%
   geom_text(aes(label = scales::percent(porcentaje, accuracy = 0.1)), 
             vjust = -0.5, size = 4) +
   
-  # Escala de eje Y
   scale_y_continuous(labels = scales::percent, limits = c(0, 0.8)) +
   
   labs(y = "Porcentaje de Países", x = "Dimensión", fill = "Categoría") +
@@ -40,7 +41,7 @@ datos_limpios %>%
 
 
 # 2. Gráfico de promedios a partir de una tabla resumen
-datos_limpios %>%
+g2 <- datos_limpios %>%
 
   summarize(
     `Derechos Humanos` = mean(Derechos_humanos, na.rm = TRUE),
@@ -66,3 +67,6 @@ datos_limpios %>%
   
   theme_classic() +
   guides(fill = "none") 
+
+# Generamos nuestro gráfico comparativo conjunto
+g1 + g2 + plot_annotation(title = "Análisis Comparativo de Dimensiones")
