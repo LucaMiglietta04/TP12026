@@ -23,7 +23,8 @@ g1 <- datos_limpios %>%
   
   ggplot() + 
 
-  aes(x = reorder(Dimension_mejor_puntuada, -porcentaje), y = porcentaje, fill = Dimension_mejor_puntuada) +
+  aes(x = reorder(Dimension_mejor_puntuada, -porcentaje), y = porcentaje) +
+#  aes(x = reorder(Dimension_mejor_puntuada, -porcentaje), y = porcentaje, fill = Dimension_mejor_puntuada) +
   
   geom_bar(stat = "identity", width = 0.7, col = "black") +
   
@@ -33,7 +34,8 @@ g1 <- datos_limpios %>%
   
   scale_y_continuous(labels = scales::percent, limits = c(0, 0.8)) +
   
-  labs(y = "Porcentaje de Países", x = "Dimensión", fill = "Categoría") +
+  labs(y = "Porcentaje de Países", x = "Dimensión") +
+#  labs(y = "Porcentaje de Países", x = "Dimensión", fill = "Categoría") +
   ggtitle("Distribución de dimensiones mejores puntuadas") +
   
   theme_classic()
@@ -44,9 +46,9 @@ g1 <- datos_limpios %>%
 g2 <- datos_limpios %>%
 
   summarize(
-    `Derechos Humanos` = mean(Derechos_humanos, na.rm = TRUE),
-    `Gobernanza` = mean(Gobernanza_IA, na.rm = TRUE),
-    `Capacidades` = mean(Capacidades_IA, na.rm = TRUE)
+    `ddhh` = mean(Derechos_humanos, na.rm = TRUE),
+    `gob` = mean(Gobernanza_IA, na.rm = TRUE),
+    `cap` = mean(Capacidades_IA, na.rm = TRUE)
   ) %>%
   
   pivot_longer(cols = everything(), 
@@ -54,7 +56,8 @@ g2 <- datos_limpios %>%
                values_to = "Promedio") %>%
   
   ggplot() +
-  aes(x = reorder(Dimension, -Promedio), y = Promedio, fill = Dimension) +
+  aes(x = reorder(Dimension, -Promedio), y = Promedio) +
+#  aes(x = reorder(Dimension, -Promedio), y = Promedio, fill = Dimension) +
   
   geom_bar(stat = "identity", width = 0.6, col = "black") +
 
@@ -62,7 +65,7 @@ g2 <- datos_limpios %>%
 
   ylim(0, 50) + 
   
-  labs(y = "Puntaje Promedio (0-100)", x = "Dimensiones del GIRAI") +
+  labs(y = "Puntaje Promedio (0-100)", x = "Dimensión") +
   ggtitle("Comparativa de Desempeño Promedio Global") +
   
   theme_classic() +
