@@ -23,9 +23,9 @@ grafico_ddhh <- datos_limpios %>%
   pivot_longer(cols = everything(), names_to = "Derecho", values_to = "Protegido") %>%
   # Filtramos solo donde sí hay protección (valor 1)
   filter(Protegido == 1) %>%
-  # Contamos y calculamos el porcentaje sobre el total de países (ej. 138)
+  # Contamos y calculamos el porcentaje sobre el total de países
   count(Derecho) %>%
-  mutate(Porcentaje = ( n / 138) * 100) # Reemplaza 138 por el total de tu muestra
+  mutate(Porcentaje = ( n / 138) * 100)
 
 # 2. Creamos el gráfico de barras
 ggplot(grafico_ddhh, aes(x = reorder(Derecho, Porcentaje), y = Porcentaje, fill = Porcentaje)) +

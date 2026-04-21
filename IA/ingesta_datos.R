@@ -1,5 +1,5 @@
 # Instalo los paquetes necesarios (si aún no los tengo instalados)
-# install.packages("googlesheets4")
+ install.packages("googlesheets4")
 
 library(googlesheets4)
 # Link al archivo
@@ -9,3 +9,4 @@ gs4_deauth()
 # Leo el archivo y almaceno los datos en un data frame
 datos <- read_sheet(url,sheet = 2,skip = 1)  
 str(datos)
+
