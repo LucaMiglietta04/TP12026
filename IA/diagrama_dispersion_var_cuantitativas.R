@@ -1,20 +1,26 @@
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
+library(ggrepel)
 attach(datos_limpios)
 
 
-# Gráfico de Dispersión para el Punto 10
-ggplot(datos_limpios, aes(x = Cant_areas_reglas_IA, y = Derechos_humanos)) +
-  # Usamos jitter para que los puntos "vibren" un poco y se vean todos
-  geom_jitter(color = "darkcyan", alpha = 0.6, width = 0.2) + 
-  # Añadimos la línea de tendencia lineal
-  geom_smooth(method = "lm", color = "red", se = TRUE) + 
+datos_resumen <- datos_limpios %>%
+  group_by(NU_subregion) %>% 
+  summarise(
+    ddhh_mediana = median(Derechos_humanos, na.rm = TRUE),
+    cant_reglas_mediana = median(Cant_areas_reglas_IA, na.rm = TRUE)
+  )
+
+ggplot(datos_resumen, aes(x = cant_reglas_mediana, y = ddhh_mediana)) +
+  geom_point(size = 4, color = "darkcyan") +
+  ggrepel::geom_text_repel(aes(label = NU_subregion), size = 3) + 
+  geom_smooth(method = "lm", se = FALSE, color = "red", linetype = "solid") +
   labs(
-    title = "Relación: Marcos Legales vs. Protección Real",
-    subtitle = "Vínculo entre la cantidad de áreas reguladas y el puntaje de DDHH",
-    x = "Cantidad de Áreas con Reglas (Discreta)",
-    y = "Puntaje de Derechos Humanos (Continua)",
+    title = "Relación Típica: Marcos Legales vs. Protección Real",
+    subtitle = "Mediana de Reglas vs. Mediana de DDHH por Subregión",
+    x = "Mediana de Áreas con Reglas (Discreta)",
+    y = "Mediana de Puntaje DDHH (Continua)",
     caption = "Fuente: GIRAI 2024"
   ) +
   theme_minimal()
