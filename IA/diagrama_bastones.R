@@ -10,7 +10,7 @@ frecuencias_acciones <- datos_limpios %>%
   mutate(Prop = n / sum(n))
 
 
-# Graficamos la relación directa (Punto 10)
+# Graficamos la relación directa
 ggplot(frecuencias_acciones, aes(x = Cant_areas_acciones_gob_IA, y = n)) +
   geom_segment(aes(xend = Cant_areas_acciones_gob_IA, yend = 0), color = "dodgerblue4", size = 1.5) +
   geom_point(color = "dodgerblue4", size = 4) +
