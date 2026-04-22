@@ -23,19 +23,17 @@ g1 <- datos_limpios %>%
   
   ggplot() + 
 
-  aes(x = reorder(Dimension_mejor_puntuada, -porcentaje), y = porcentaje) +
-#  aes(x = reorder(Dimension_mejor_puntuada, -porcentaje), y = porcentaje, fill = Dimension_mejor_puntuada) +
+  aes(x = reorder(Dimension_mejor_puntuada, -porcentaje), y = porcentaje, fill = Dimension_mejor_puntuada) +
   
-  geom_bar(stat = "identity", width = 0.7, col = "black", fill = "lightgreen") +
+  geom_bar(stat = "identity", width = 0.7, col = "black") +
   
   # Etiquetas de porcentaje sobre las barras
   geom_text(aes(label = scales::percent(porcentaje, accuracy = 0.1)), 
             vjust = -0.5, size = 4) +
   
   scale_y_continuous(labels = scales::percent, limits = c(0, 0.8)) +
-  
-  labs(y = "Porcentaje de Países", x = "Dimensión") +
-#  labs(y = "Porcentaje de Países", x = "Dimensión", fill = "Categoría") +
+
+  labs(y = "Porcentaje de Países", x = "Dimensión", fill = "Categoría") +
   ggtitle("Distribución de dimensiones mejores puntuadas") +
   
   theme_classic()
@@ -56,10 +54,9 @@ g2 <- datos_limpios %>%
                values_to = "Promedio") %>%
   
   ggplot() +
-  aes(x = reorder(Dimension, -Promedio), y = Promedio, fill = "lightgreen") +
-#  aes(x = reorder(Dimension, -Promedio), y = Promedio, fill = Dimension) +
+  aes(x = reorder(Dimension, -Promedio), y = Promedio, fill = Dimension) +
   
-  geom_bar(stat = "identity", width = 0.6, col = "black", fill = "lightgreen") +
+  geom_bar(stat = "identity", width = 0.6, col = "black") +
 
   geom_text(aes(label = round(Promedio, 2)), vjust = -0.5) +
 
