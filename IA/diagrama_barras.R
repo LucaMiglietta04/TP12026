@@ -48,7 +48,7 @@ ggplot(grafico_ddhh, aes(x = reorder(Derecho, Porcentaje), y = Porcentaje, fill 
 grafico_subregional <- datos_limpios %>%
   # Agrupamos por subregión
   group_by(NU_subregion) %>%
-  # Seleccionamos las columnas. ¡Ojo! Aquí incluimos la variable de grupo
+  # Seleccionamos las columnas. Aquí incluimos la variable de grupo
   select(NU_subregion, Sesgo_y_discriminacion, Derechos_infancia, Diversidad_cultural, 
          Proteccion_datos, Igualdad_de_genero, Proteccion_laboral) %>%
   # Pasamos a formato largo, pero mantenemos NU_subregion fuera del pivot

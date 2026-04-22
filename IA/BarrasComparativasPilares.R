@@ -26,7 +26,7 @@ g1 <- datos_limpios %>%
   aes(x = reorder(Dimension_mejor_puntuada, -porcentaje), y = porcentaje) +
 #  aes(x = reorder(Dimension_mejor_puntuada, -porcentaje), y = porcentaje, fill = Dimension_mejor_puntuada) +
   
-  geom_bar(stat = "identity", width = 0.7, col = "black") +
+  geom_bar(stat = "identity", width = 0.7, col = "black", fill = "lightgreen") +
   
   # Etiquetas de porcentaje sobre las barras
   geom_text(aes(label = scales::percent(porcentaje, accuracy = 0.1)), 
@@ -56,10 +56,10 @@ g2 <- datos_limpios %>%
                values_to = "Promedio") %>%
   
   ggplot() +
-  aes(x = reorder(Dimension, -Promedio), y = Promedio) +
+  aes(x = reorder(Dimension, -Promedio), y = Promedio, fill = "lightgreen") +
 #  aes(x = reorder(Dimension, -Promedio), y = Promedio, fill = Dimension) +
   
-  geom_bar(stat = "identity", width = 0.6, col = "black") +
+  geom_bar(stat = "identity", width = 0.6, col = "black", fill = "lightgreen") +
 
   geom_text(aes(label = round(Promedio, 2)), vjust = -0.5) +
 
