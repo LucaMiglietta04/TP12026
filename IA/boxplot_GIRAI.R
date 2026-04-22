@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Instalo los paquetes necesarios (si aún no los tengo instalados)
 # install.packages("tidyverse")
 # install.packages("ggplot2")
@@ -24,7 +24,6 @@ datos_limpios %>%
   theme_classic() +
   ggtitle("Distribución de valores GIRAI según los países")
 
-=======
 # Instalo los paquetes necesarios (si aún no los tengo instalados)
 # install.packages("tidyverse")
 # install.packages("ggplot2")
@@ -46,7 +45,8 @@ datos_limpios %>%
   geom_boxplot(width = 0.50, fill = "lightblue", outlier.size = 1) +
   theme(axis.ticks.y = element_blank()) +
   labs(y = "", x = "Valor GIRAI") +
-  scale_x_continuous(breaks = seq(0, 250, 50)) # Marcas del eje
-
+  scale_x_continuous(breaks = seq(0, 250, 50)) + # Marcas del eje
+  theme_classic()
+  
 summary(datos_limpios$GIRAI)
->>>>>>> c5bdb803c679de1a560123818b2c110099377fb3
+
