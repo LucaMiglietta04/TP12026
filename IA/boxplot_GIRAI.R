@@ -20,3 +20,5 @@ datos_limpios %>%
   theme(axis.ticks.y = element_blank()) +
   labs(y = "", x = "Valor GIRAI") +
   scale_x_continuous(breaks = seq(0, 250, 50)) # Marcas del eje
+
+summary(datos_limpios$GIRAI)
