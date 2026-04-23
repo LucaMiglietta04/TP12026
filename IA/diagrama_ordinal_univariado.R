@@ -2,7 +2,7 @@ library(tidyverse)
 library(ggplot2)
 attach(datos_limpios)
 
-niveles_ordenados <- c("Muy Bajo", "Bajo", "Medio", "Alto", "Muy Alto")
+niveles_ordenados <- c("Muy bajo", "Bajo", "Medio", "Alto", "Muy alto")
 umbral <- quantile(datos_limpios$GIRAI,0.25, na.rm = TRUE)
 
 paises_criticos <- datos_limpios %>%
@@ -30,4 +30,3 @@ ggplot(paises_criticos_long, aes(x = Nivel, fill = Dimension)) +
     y = "Cantidad de Países"
   ) +
   theme_minimal()
-
