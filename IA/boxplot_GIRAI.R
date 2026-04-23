@@ -19,7 +19,7 @@ datos_limpios %>%
   aes(x = GIRAI, y = "") +
   geom_boxplot(width = 0.50, fill = "lightblue", outlier.size = 1) +
   theme(axis.ticks.y = element_blank()) +
-  labs(y = "", x = "Valor GIRAI") +
+  labs(y = "", x = "Valor GIRAI", caption = "Fuente :GIRAI 2024") +
   scale_x_continuous(breaks = seq(0, 250, 50)) + # Marcas del eje
   theme_classic() +
   ggtitle("Distribución de valores GIRAI según los países")
