@@ -34,12 +34,12 @@ colnames(datos_limpios) <- c(
 datos_limpios <- datos_limpios %>%
   mutate(
     cat_sesgo =  if_else(Sesgo_y_discriminacion == 1, "Sesgo", NA_character_),
-    cat_datos =  if_else(Proteccion_datos == 1, "Datos", NA_character_),
-    cat_genero = if_else(Igualdad_de_genero == 1, "Género", NA_character_),
-    cat_infancia = if_else(Derechos_infancia == 1, "Der_infancia", NA_character_),
-    cat_cultural = if_else(Diversidad_cultural == 1, "Div_cultural", NA_character_),
-    cat_supervision = if_else(Supervision_humana == 1, "Sup_humana", NA_character_),
-    cat_laboral = if_else(Proteccion_laboral == 1, "Laboral", NA_character_),
+    cat_datos =  if_else(Proteccion_datos == 1, "Proteccion de Datos", NA_character_),
+    cat_genero = if_else(Igualdad_de_genero == 1, "Igualdad de Género", NA_character_),
+    cat_infancia = if_else(Derechos_infancia == 1, "Derechos  de la infancia", NA_character_),
+    cat_cultural = if_else(Diversidad_cultural == 1, "Division cultural", NA_character_),
+    cat_supervision = if_else(Supervision_humana == 1, "Supervision humana", NA_character_),
+    cat_laboral = if_else(Proteccion_laboral == 1, "Proteccion Laboral", NA_character_),
     cat_seguridad = if_else(Seguridad_precision_y_fiabilidad == 1, "Seguridad", NA_character_),
     cat_transparencia = if_else(Transparencia_y_explicabilidad == 1, "Transparencia", NA_character_),
     ) %>%

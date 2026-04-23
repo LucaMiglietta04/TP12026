@@ -13,6 +13,7 @@ paises_criticos <- datos_limpios %>%
   mutate(Validacion_Global = factor(Marcos_fuentes_sec, 
                                     levels = niveles_ordenados, 
                                     ordered = TRUE))
+length(paises_criticos)
 
 paises_criticos_long <- paises_criticos %>%
         select(Marcos_fuentes_sec, Acciones_fuentes_sec, Actores_no_estatales_sec) %>%
