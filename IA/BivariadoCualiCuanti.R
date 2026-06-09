@@ -7,7 +7,7 @@ attach(datos_limpios)
 
 ggplot(datos_limpios) +
   aes(x = NU_region, y = Derechos_humanos) +
-  geom_boxplot(show.legend = F, fill = "lightblue") +
+  geom_boxplot(show.legend = F, fill = "lightpink") +
   labs(x = "Región de la ONU", y = "Índice de Derechos Humanos (0-100)") +
   coord_flip() +
   ggtitle("Distribución del Índice de Derechos Humanos según Región") +
