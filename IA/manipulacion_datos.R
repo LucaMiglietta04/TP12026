@@ -10,13 +10,13 @@ attach(datos)
 ## Elimino del df las columnas de no interes
 
 datos_limpios <- datos %>%
-  select(-ISO3,-Country,-tipo_academia_en,-tipo_privado_en,-NU_region,-GIRAI_region 
+  select(-ISO3,-Country,-tipo_academia_en,-tipo_privado_en,-GIRAI_region 
          ,-tipo_privado_es , -tipo_academia_es, -privado , -academia)
 
 
 ## Renombro las columnas del df para un  reconocimiento y analisis claro
 colnames(datos_limpios) <- c(  
-  "Ranking", "Pais", "NU_subregion", "GIRAI",
+  "Ranking", "Pais","NU_region" , "NU_subregion", "GIRAI",
   "Marcos_normativos_gob", "Acciones_gob", "Actores_no_estatales",
   "Derechos_humanos", "Gobernanza_IA", "Capacidades_IA",
   "Marcos_fuentes_sec", "Acciones_fuentes_sec",
