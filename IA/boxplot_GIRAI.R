@@ -1,8 +1,3 @@
-
-# Instalo los paquetes necesarios (si aún no los tengo instalados)
-# install.packages("tidyverse")
-# install.packages("ggplot2")
-
 # Cargo los paquetes que voy a usar
 library(tidyverse)
 library(ggplot2)
@@ -10,43 +5,25 @@ library(ggplot2)
 # Fijo el dataset
 attach(datos_limpios)
 
-
-
 datos_limpios %>% 
   select(GIRAI) %>%
-
   ggplot() +
   aes(x = GIRAI, y = "") +
   geom_boxplot(width = 0.50, fill = "lightblue", outlier.size = 1) +
-  theme(axis.ticks.y = element_blank()) +
-  labs(y = "", x = "Valor GIRAI", caption = "Fuente :GIRAI 2024") +
-  scale_x_continuous(breaks = seq(0, 250, 50)) + # Marcas del eje
-  theme_classic() +
-  ggtitle("Distribución de valores GIRAI según los países")
-
-# Instalo los paquetes necesarios (si aún no los tengo instalados)
-# install.packages("tidyverse")
-# install.packages("ggplot2")
-
-# Cargo los paquetes que voy a usar
-library(tidyverse)
-library(ggplot2)
-
-# Fijo el dataset
-attach(datos_limpios)
-
-
-
-datos_limpios %>% 
-  select(GIRAI) %>%
-
-  ggplot() +
-  aes(x = GIRAI, y = "") +
-  geom_boxplot(width = 0.50, fill = "lightblue", outlier.size = 1) +
-  theme(axis.ticks.y = element_blank()) +
-  labs(y = "", x = "Valor GIRAI") +
-  scale_x_continuous(breaks = seq(0, 250, 50)) + # Marcas del eje
-  theme_classic()
   
-summary(datos_limpios$GIRAI)
+  scale_x_continuous(breaks = seq(0, 100, 10)) + 
+  
+  labs(y = "", x = "Valor GIRAI", caption = "Fuente: índice GIRAI 2024") +
+  ggtitle("Distribución de valores GIRAI según los países") +
+  
+  # Fijamos el tema base
+  theme_classic() + 
+  
+  # Tu bloque de theme
+  theme(
+    axis.ticks.y = element_blank(),
+    plot.caption = element_text(face = "italic", color = "gray30", size = 9)
+  )
 
+# Resumen estadístico por consola
+summary(datos_limpios$GIRAI)

@@ -17,12 +17,12 @@ library(ggplot2)
 
 # 1. Gráfico de proporciones de la Dimensión Mejor Puntuada
 g1 <- datos_limpios %>%
-
+  
   count(Dimension_mejor_puntuada) %>%
   mutate(porcentaje = n / sum(n)) %>%
   
   ggplot() + 
-
+  
   aes(x = reorder(Dimension_mejor_puntuada, -porcentaje), y = porcentaje, fill = Dimension_mejor_puntuada) +
   
   geom_bar(stat = "identity", width = 0.7, col = "black") +
@@ -32,7 +32,7 @@ g1 <- datos_limpios %>%
             vjust = -0.5, size = 4) +
   
   scale_y_continuous(labels = scales::percent, limits = c(0, 0.8)) +
-
+  
   labs(y = "Porcentaje de Países", x = "Dimensión", fill = "Categoría") +
   ggtitle("Distribución de dimensiones mejores puntuadas") +
   
@@ -42,7 +42,7 @@ g1 <- datos_limpios %>%
 
 # 2. Gráfico de promedios a partir de una tabla resumen
 g2 <- datos_limpios %>%
-
+  
   summarize(
     `ddhh` = mean(Derechos_humanos, na.rm = TRUE),
     `gob` = mean(Gobernanza_IA, na.rm = TRUE),
@@ -57,9 +57,9 @@ g2 <- datos_limpios %>%
   aes(x = reorder(Dimension, -Promedio), y = Promedio, fill = Dimension) +
   
   geom_bar(stat = "identity", width = 0.6, col = "black") +
-
+  
   geom_text(aes(label = round(Promedio, 2)), vjust = -0.5) +
-
+  
   ylim(0, 50) + 
   
   labs(y = "Puntaje Promedio (0-100)", x = "Dimensión") +
@@ -68,5 +68,13 @@ g2 <- datos_limpios %>%
   theme_classic() +
   guides(fill = "none") 
 
-# Generamos nuestro gráfico comparativo conjunto
-g1 + g2 + plot_annotation(title = "Análisis Comparativo de Dimensiones")
+# Generamos nuestro gráfico comparativo conjunto con la fuente integrada
+g1 + g2 + plot_annotation(
+  title = "Análisis Comparativo de Dimensiones",
+  caption = "Fuente: índice GIRAI 2024", # <-- Agregamos el texto de la fuente
+  
+  # Aplicamos tu bloque de diseño específico para el caption global
+  theme = theme(
+    plot.caption = element_text(face = "italic", color = "gray30", size = 9)
+  )
+)
