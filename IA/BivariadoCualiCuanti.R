@@ -6,12 +6,17 @@
 attach(datos_limpios)
 
 ggplot(datos_limpios) +
-  aes(x = NU_region, y = Derechos_humanos) +
+  aes(x = NU_Region, y = Derechos_Humanos) +
   geom_boxplot(show.legend = F, fill = "lightpink") +
-  labs(x = "Región de la ONU", y = "Índice de Derechos Humanos (0-100)") +
+  labs(
+    x = "Región de la ONU", 
+    y = "Índice de Derechos Humanos (0-100)",
+    caption = "Fuente: índice GIRAI 2024" # <-- Esto agrega la línea al final del gráfico
+  ) + 
   coord_flip() +
   ggtitle("Distribución del Índice de Derechos Humanos según Región") +
-  theme_light()
+  theme_light() +
+  theme(plot.caption = element_text(face = "italic", color = "gray30", size = 9)) # Le da un toque estético sutil
 
 # Caso particular: segmentación por regiones globales individuales en una grilla común.
 # Nota: Revisá si los nombres de las regiones en tu dataset están en inglés 
