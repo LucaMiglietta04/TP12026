@@ -16,8 +16,8 @@ ggplot(frecuencias_acciones, aes(x = Cant_areas_acciones_gob_IA, y = n)) +
   scale_x_continuous(breaks = 0:max(datos_limpios$Cant_areas_acciones_gob_IA)) +
   labs(
     title = "Densidad de Acciones Gubernamentales en IA",
-    x = "Cantidad de Áreas con Acciones (Variable Discreta)",
-    y = "Número de Países (Frecuencia)",
+    x = "Cantidad de Áreas con Acciones",
+    y = "Número de Países",
     caption = "Fuente: índice GIRAI 2024" # <-- Agregamos la fuente acá
   ) +
 

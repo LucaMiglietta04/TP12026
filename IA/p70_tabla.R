@@ -32,17 +32,25 @@ ggplot(datos_resumen, aes(x = reorder(Areas_p70_multiple, n), y = n)) +
     subtitle = "Frecuencia y porcentaje incluyendo países sin áreas detectadas ('Ninguna')",
     x = "Área Temática",
     y = "Cantidad de Países",
-    caption = "Fuente: Elaboración propia sobre datos GIRAI 2024"
+    caption = "Fuente: indice GIRAI 2024"
   ) +
   theme_minimal() +
   theme(
     legend.position = "none", 
     panel.grid = element_blank(),
-    axis.text.y = element_text(size = 10)
-  )
+    axis.text.y = element_text(size = 10),
+    plot.caption = element_text(face = "italic", color = "gray30", size = 9)
+     )
 
-
-
+grafico_subregional <- datos_limpios %>%
+  group_by(NU_subregion) %>%
+  select(NU_subregion, Sesgo_y_discriminacion, Derechos_infancia, Diversidad_cultural, 
+         Proteccion_datos, Igualdad_de_genero, Proteccion_laboral) %>%
+  pivot_longer(cols = -NU_subregion, names_to = "Derecho", values_to = "Protegido") %>%
+  filter(Protegido == 1) %>%
+  group_by(NU_subregion, Derecho) %>%
+  summarise(n = n(), .groups = "drop_last") %>%
+  mutate(Porcentaje = (n / sum(n)) * 100) 
 ## grafico subregionalhttp://127.0.0.1:29056/graphics/645c2fe8-0a28-43eb-97c5-918c7eb75352.png
 ggplot(grafico_subregional, aes(x = reorder(Derecho, Porcentaje), y = Porcentaje, fill = NU_subregion)) +
   geom_col() +
@@ -53,10 +61,12 @@ ggplot(grafico_subregional, aes(x = reorder(Derecho, Porcentaje), y = Porcentaje
     subtitle = "Porcentaje de adopción de mecanismos según subregión",
     x = "Mecanismo de Derecho Humano",
     y = "Porcentaje (%)",
-    caption = "Fuente: Elaboración propia - GIRAI 2024"
+    caption = "Fuente: indice GIRAI 2024"
   ) +
   theme_minimal() +
-  theme(legend.position = "none", strip.text = element_text(face = "bold"))
+  theme(legend.position = "none", strip.text = element_text(face = "bold"),
+        plot.caption = element_text(face = "italic", color = "gray30", size = 9)
+        )
 
 ## otro analisis que puede ser interesante 
 analisis_subregional <- datos_limpios %>%
