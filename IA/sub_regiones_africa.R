@@ -25,6 +25,17 @@ colores <- c(
   "América del Norte"          = "#74C476"
 )
 
+tema_base <- theme_minimal(base_size = 12) +
+  theme(
+    legend.position    = "right",
+    legend.title       = element_text(size = 10),
+    legend.key.size    = unit(0.4, "cm"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.x        = element_text(size = 10),
+    axis.text.y        = element_text(size = 10),
+    plot.title         = element_text(size = 12, face = "bold")
+  )
 # Tema con etiquetas rotadas (Asia y América)
 tema_rotado <- tema_base +
   theme(

@@ -24,7 +24,6 @@ paises_criticos_long <- paises_criticos %>%
   pivot_longer(cols = everything(), names_to = "Dimension", values_to = "Nivel") %>%
   mutate(Nivel = factor(Nivel, levels = niveles_ordenados, ordered = TRUE))
 
-# 1. Primer gráfico base (Dodge)
 ggplot(paises_criticos_long, aes(x = Nivel, fill = Dimension)) +
   geom_bar(position = "dodge") +
   scale_y_continuous(breaks = function(x) seq(0, max(x), by = 1)) +
@@ -37,14 +36,12 @@ ggplot(paises_criticos_long, aes(x = Nivel, fill = Dimension)) +
   ) +
   theme_minimal()
 
-# Mapeo de nombres para los paneles del Facet
 nombres_pilares <- c(
   "Marcos_fuentes_sec" = "Marcos Normativos",
   "Acciones_fuentes_sec" = "Acciones Gubernamentales",
   "Actores_no_estatales_sec" = "Actores No Estatales"
 )
 
-# 2. Segundo gráfico con Facets (Donde agregamos la fuente estandarizada)
 ggplot(paises_criticos_long, aes(x = Nivel, fill = Dimension)) + 
   geom_bar() +
   
@@ -58,10 +55,8 @@ ggplot(paises_criticos_long, aes(x = Nivel, fill = Dimension)) +
   
   facet_wrap(~Dimension, ncol = 3, labeller = labeller(Dimension = nombres_pilares)) + 
   
-  # Ajustes de escala
   scale_y_continuous(breaks = function(x) seq(0, max(x), by = 2)) +
-  
-  # Agregamos la fuente en las etiquetas globales
+
   labs(
     title = "Niveles de Desarrollo por Pilar en Países Críticos",
     subtitle = "Comparativa de fuentes secundarias (Gobernanza, Marcos y Actores)",
@@ -76,5 +71,5 @@ ggplot(paises_criticos_long, aes(x = Nivel, fill = Dimension)) +
     strip.text = element_text(face = "bold", size = 10),
     legend.position = "none",
     # Mantenemos tu estilo estandarizado de caption para todo el TP
-    plot.caption = element_text(face = "italic", color = "gray30", size = 9) # <-- Estilo aplicado acá
+    plot.caption = element_text(face = "italic", color = "gray30", size = 9) 
   )

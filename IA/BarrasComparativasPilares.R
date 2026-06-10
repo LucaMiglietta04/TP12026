@@ -15,7 +15,6 @@ attach(datos_limpios)
 library(tidyverse)
 library(ggplot2)
 
-# 1. Gráfico de proporciones de la Dimensión Mejor Puntuada
 g1 <- datos_limpios %>%
   
   count(Dimension_mejor_puntuada) %>%
@@ -27,7 +26,6 @@ g1 <- datos_limpios %>%
   
   geom_bar(stat = "identity", width = 0.7, col = "black") +
   
-  # Etiquetas de porcentaje sobre las barras
   geom_text(aes(label = scales::percent(porcentaje, accuracy = 0.1)), 
             vjust = -0.5, size = 4) +
   
@@ -38,9 +36,6 @@ g1 <- datos_limpios %>%
   
   theme_classic()
 
-
-
-# 2. Gráfico de promedios a partir de una tabla resumen
 g2 <- datos_limpios %>%
   
   summarize(
@@ -71,9 +66,8 @@ g2 <- datos_limpios %>%
 # Generamos nuestro gráfico comparativo conjunto con la fuente integrada
 g1 + g2 + plot_annotation(
   title = "Análisis Comparativo de Dimensiones",
-  caption = "Fuente: índice GIRAI 2024", # <-- Agregamos el texto de la fuente
+  caption = "Fuente: índice GIRAI 2024",
   
-  # Aplicamos tu bloque de diseño específico para el caption global
   theme = theme(
     plot.caption = element_text(face = "italic", color = "gray30", size = 9)
   )

@@ -19,8 +19,7 @@ datos_limpios %>%
   ) %>%
   ggplot() +
   aes(x = gob_mediana, y = ddhh_mediana) + 
-  geom_point(size = 4, color = "pink") + 
-  # Agregamos etiquetas de subregiones y la recta x=y para mayor interpretación visual
+  geom_point(size = 4, color = "#1874CD") + 
   geom_text(aes(label = NU_subregion), vjust = -1.2, size = 3, check_overlap = TRUE) + 
   geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "darkgray") +
   labs(
@@ -30,11 +29,10 @@ datos_limpios %>%
     caption = "Fuente: índice GIRAI 2024"
   ) +
   xlim(0, 100) + ylim(0, 100) +
-  
-  # 1. Aplicamos el tema base del gráfico
+
   theme_minimal() +
   
-  # 2. Agregamos tu configuración estandarizada para la fuente
+ 
   theme(
     plot.caption = element_text(face = "italic", color = "gray30", size = 9)
   )
