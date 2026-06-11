@@ -70,12 +70,12 @@ ggplot(grafico_subregional, aes(x = reorder(Derecho, Porcentaje), y = Porcentaje
 
 ## otro analisis que puede ser interesante 
 analisis_subregional <- datos_limpios %>%
-  group_by(NU_subregion) %>%
+  group_by(NU_region) %>%
   summarise(
     cantidad_paises = n(),
     promedio_ddhh = mean(Derechos_humanos, na.rm = TRUE) 
   ) %>%
-  arrange(desc(cantidad_paises))
+  arrange(desc(promedio_ddhh))
 
 analisis_subregional %>%
   gt() %>%
@@ -84,7 +84,7 @@ analisis_subregional %>%
     subtitle = "Basado en el índice de Derechos Humanos 2024"
   ) %>%
   cols_label(
-    NU_subregion = "Subregión",
+    NU_region = "Subregión",
     cantidad_paises = "Países",
     promedio_ddhh = "Promedio DDHH"
   ) %>%
